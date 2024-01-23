@@ -1,0 +1,16 @@
+version: '3'
+services:
+  # Airflow в отдельном контейнере
+  airflow:
+    # Сборка из Dockerfile
+    build: .
+    restart: always
+    ports:
+      - 8001:8080
+    volumes:
+      - ./airflow/dags:/usr/local/airflow/dags
+      - ./airflow/plugins:/root/airflow/plugins
+      - logs:/usr/local/airflow/logs
+
+volumes:
+  logs:
